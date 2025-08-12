@@ -87,6 +87,7 @@ async function callGrokApi(messages, options = {}) {
     // Process the stream
     for await (const chunk of response.body) {
       const textChunk = decoder.decode(chunk, { stream: true });
+      process.stdout.write(textChunk); // Node 环境
       const lines = textChunk.split('\n');
 
       for (const line of lines) {
